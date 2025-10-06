@@ -1,0 +1,22 @@
+tasks:
+  - name: compile_module1_kotlin
+    type: kotlin
+    src: src/module1/kotlin
+    out: build/module1/classes
+
+  - name: compile_module1_java
+    type: java
+    src: src/module1/java
+    out: build/module1/classes
+    dependsOn: ["compile_module1_kotlin"]
+
+  - name: compile_module1_cpp
+    type: cpp
+    src: src/module1/cpp
+    out: build/module1/bin
+
+  - name: package_module1_jar
+    type: jar
+    input: build/module1/classes
+    out: build/module1/module1.jar
+    dependsOn: ["compile_module1_java", "compile_module1_kotlin"]
